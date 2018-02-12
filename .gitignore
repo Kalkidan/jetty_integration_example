@@ -12,6 +12,19 @@
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
+.idea/compiler.xml
+.idea/misc.xml
+.idea/modules/directory_service.iml
+.idea/modules/directory_service_main.iml
+.idea/modules/directory_service_test.iml
+.idea/modules.xml
+.idea/modules/directory_service.iml
+
+
+
+
+
+
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
