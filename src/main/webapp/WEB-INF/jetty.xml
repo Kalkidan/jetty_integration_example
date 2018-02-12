@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
+
+<!--Define the Server configuration here!-->
+<Configure id="ExampleServer" class="org.eclipse.jetty.server.Server">
+    <Set name="connectors">
+        <Array type="org.eclipse.jetty.server.Connector">
+            <Item>
+                <New class="org.eclipse.jetty.server.ServerConnector">
+                    <Arg><Ref refid="ExampleServer"/></Arg>
+                    <Set name="port">7061</Set>
+                </New>
+            </Item>
+        </Array>
+    </Set>
+
+    <!--Define a data source!-->
+    <!--<New class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg><Ref id="thisfile"/></Arg>
+        <Arg>java:compx</Arg>
+        <Arg>
+            <New class="org.postgresql.ds.PGConnectionPoolDataSource">
+                <Set name="serverName">your_server_name</Set>
+                <Set name="databaseName">your_database_name</Set>
+                <Set name="portNumber">5432</Set>
+                <Set name="user">your_username</Set>
+                <Set name="password">your_password</Set>
+            </New>
+        </Arg>
+    </New>-->
+
+    <!--Define a data source!-->
+    <New id="directory" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg></Arg>
+        <Arg>jdbc/directory_data_source</Arg>
+        <Arg>
+            <New class="org.postgresql.ds.PGConnectionPoolDataSource">
+                <Set name="User">user</Set>
+                <Set name="Password">pass</Set>
+                <Set name="DatabaseName">dbname</Set>
+                <Set name="ServerName">localhost</Set>
+                <Set name="PortNumber">5432</Set>
+
+            </New>
+        </Arg>
+    </New>
+
+</Configure>
