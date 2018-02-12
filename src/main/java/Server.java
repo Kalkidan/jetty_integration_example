@@ -50,7 +50,7 @@ public class Server {
 
          //ServletHandler
         ServletHandler servletHandler = new ServletHandler();
-        servletHandler.addServlet(jerseyServlet);
+        servletHandler.addServlet(jerseyServlet );
 
          //set handler
         handlerCollection.addHandler(context);
@@ -63,8 +63,6 @@ public class Server {
          //Start the server
         try {
             jettyServer.start();
-
-
             jettyServer.join();
 
         } catch (Exception e){
