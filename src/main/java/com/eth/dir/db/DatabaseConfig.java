@@ -1,6 +1,6 @@
 package com.eth.dir.db;
 
-//A trial class representing the database
+//TODO:: Will change to the real deal database implementation
 public class DatabaseConfig {
 
     double input;
