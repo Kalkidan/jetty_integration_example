@@ -3,6 +3,7 @@ import com.eth.dir.util.ServletUtil;
 
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -46,6 +47,10 @@ public class Server {
 
          //Add initial parameters of the Servlet
         jerseyServlet.setInitParameters(ServletUtil.getInitialParameters());
+
+         //ServletHandler
+        ServletHandler servletHandler = new ServletHandler();
+        servletHandler.addServlet(jerseyServlet);
 
          //set handler
         handlerCollection.addHandler(context);

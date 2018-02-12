@@ -15,21 +15,6 @@
     </Set>
 
     <!--Define a data source!-->
-    <!--<New class="org.eclipse.jetty.plus.jndi.Resource">
-        <Arg><Ref id="thisfile"/></Arg>
-        <Arg>java:compx</Arg>
-        <Arg>
-            <New class="org.postgresql.ds.PGConnectionPoolDataSource">
-                <Set name="serverName">your_server_name</Set>
-                <Set name="databaseName">your_database_name</Set>
-                <Set name="portNumber">5432</Set>
-                <Set name="user">your_username</Set>
-                <Set name="password">your_password</Set>
-            </New>
-        </Arg>
-    </New>-->
-
-    <!--Define a data source!-->
     <New id="directory" class="org.eclipse.jetty.plus.jndi.Resource">
         <Arg></Arg>
         <Arg>jdbc/directory_data_source</Arg>
