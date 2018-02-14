@@ -3,6 +3,7 @@
 
 <!--Define the Server configuration here!-->
 <Configure id="directory_server" class="org.eclipse.jetty.server.Server">
+
     <Set name="connectors">
         <Array type="org.eclipse.jetty.server.Connector">
             <Item>
@@ -29,6 +30,9 @@
             </New>
         </Arg>
     </Call>
+
+    <!-- Thread pool execution spec!-->
+
 
     <!--Define a data source!-->
     <New id="directory" class="org.eclipse.jetty.plus.jndi.Resource">

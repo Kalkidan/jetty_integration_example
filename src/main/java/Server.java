@@ -15,6 +15,12 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
 
+        /**
+         * At its basic form Jetty needs, connectors, handlers, server, and threadpool.
+         * We can implement Servlets in context of servlet handlers. Most of the time
+         * this approach will save us the overhead by {@link javax.servlet.Servlet}
+         */
+
          //Fetch the server configuration
         Resource fileCfg = Resource.newResource(Constants.JETTY_XML_PATH);
 
@@ -22,6 +28,7 @@ public class Server {
         XmlConfiguration configuration = new XmlConfiguration(fileCfg.getInputStream());
 
          //We can cast this SERVER
+        //TODO:: this is just demo functionality for JETTY configuration
         org.eclipse.jetty.server.Server jettyServer = (org.eclipse.jetty.server.Server) configuration.configure();
 
          //Define a handler collection
@@ -36,13 +43,14 @@ public class Server {
          //Handler collection
         handlerCollection.addHandler(webAppContext);
 
-         //com.beacon.helper.server.Server context
+          //com.beacon.helper.server.Server context
          //Define Server Context
         ServletContextHandler context = new ServletContextHandler();
         context.setContextPath(Constants.CONTEXT_PATH_SERVER);
 
          //Servlet holder instance
-        ServletHolder jerseyServlet = context.addServlet(org.glassfish.jersey.servlet.ServletContainer.class, Constants.PATH_SPEC_SERVER);
+        ServletHolder jerseyServlet =
+                context.addServlet(org.glassfish.jersey.servlet.ServletContainer.class, Constants.PATH_SPEC_SERVER);
         jerseyServlet.setInitOrder(0);
 
          //Add initial parameters of the Servlet
@@ -56,17 +64,19 @@ public class Server {
         handlerCollection.addHandler(context);
         jettyServer.setHandler(handlerCollection);
 
-        //This is just for trial
+         //This is just for trial
         InitialContext ic = new InitialContext();
         ic.lookup(Constants.DATA_SOURCE_LOOK_UP_PATH);
 
-         //Start the server
+         //Start and join the server
         try {
             jettyServer.start();
             jettyServer.join();
 
         } catch (Exception e){
 
+             // end the server if anything
+            jettyServer.destroy();
         }
     }
 }

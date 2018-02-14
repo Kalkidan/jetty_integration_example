@@ -13,7 +13,8 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    //Glass fish---we will need to move this to lib folder
+    //Glass fish---we will need to move this to lib folder, if a single .jar is
+    //detected
     compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.7'
     compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.7'
     compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: '2.7'
