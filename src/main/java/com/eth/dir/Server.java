@@ -8,7 +8,13 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.eclipse.jetty.xml.XmlConfiguration;
+import org.postgresql.ds.PGConnectionPoolDataSource;
+import org.postgresql.ds.common.BaseDataSource;
+
 import javax.naming.InitialContext;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.util.Properties;
 
 public class Server {
 
@@ -66,7 +72,20 @@ public class Server {
 
          //This is just for trial
         InitialContext ic = new InitialContext();
-        ic.lookup(Constants.DATA_SOURCE_LOOK_UP_PATH);
+        PGConnectionPoolDataSource dataSource = (PGConnectionPoolDataSource) ic.lookup(Constants.DATA_SOURCE_LOOK_UP_PATH);
+
+        String sql = "CREATE TABLE KA " +
+                "(ID INT PRIMARY KEY     NOT NULL," +
+                " NAME           TEXT    NOT NULL, " +
+                " AGE            INT     NOT NULL, " +
+                " ADDRESS        CHAR(50), " +
+                " SALARY         REAL)";
+
+        Connection baseDataSource = dataSource.getConnection();
+
+        //baseDataSource.createStatement().execute(sql);
+
+
 
          //Start and join the server
         try {
