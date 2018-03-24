@@ -9,7 +9,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("directory")
-public class DirectoryService {
+public class GetService {
 
     @GET
     @Path("squareRoot")

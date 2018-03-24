@@ -12,11 +12,11 @@ public class Constants {
 
     //Web end
 
-    //Server
+    //com.eth.dir.Server
     public static final String PATH_SPEC_SERVER = "/*";
     public static final String CONTEXT_PATH_SERVER = "/";
 
-    //Server end
+    //com.eth.dir.Server end
 
     //data source
     public static final String DATA_SOURCE_LOOK_UP_PATH = "jdbc/directory_data_source";

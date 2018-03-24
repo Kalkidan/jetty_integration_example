@@ -1,6 +1,7 @@
+package com.eth.dir;
+
 import com.eth.dir.util.Constants;
 import com.eth.dir.util.ServletUtil;
-
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHandler;
@@ -9,16 +10,17 @@ import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.eclipse.jetty.xml.XmlConfiguration;
 import org.postgresql.ds.PGConnectionPoolDataSource;
-import org.postgresql.ds.common.BaseDataSource;
-
 import javax.naming.InitialContext;
-import javax.sql.DataSource;
 import java.sql.Connection;
-import java.util.Properties;
 
 public class Server {
 
-
+    /**
+     * Something to pay attention here is the lifecycle of the servlet
+     * container.
+     * TODO:: research into avoiding member variables
+     *
+     */
     public static void main(String[] args) throws Exception {
 
         /**
@@ -33,8 +35,8 @@ public class Server {
          //XML configuration file.
         XmlConfiguration configuration = new XmlConfiguration(fileCfg.getInputStream());
 
-         //We can cast this SERVER
-        //TODO:: this is just demo functionality for JETTY configuration
+          //We can cast this SERVER
+         //TODO:: this is just demo functionality for JETTY configuration
         org.eclipse.jetty.server.Server jettyServer = (org.eclipse.jetty.server.Server) configuration.configure();
 
          //Define a handler collection
@@ -49,8 +51,8 @@ public class Server {
          //Handler collection
         handlerCollection.addHandler(webAppContext);
 
-          //com.beacon.helper.server.Server context
-         //Define Server Context
+          //com.beacon.helper.server.com.eth.dir.Server context
+         //Define com.eth.dir.Server Context
         ServletContextHandler context = new ServletContextHandler();
         context.setContextPath(Constants.CONTEXT_PATH_SERVER);
 
@@ -62,7 +64,8 @@ public class Server {
          //Add initial parameters of the Servlet
         jerseyServlet.setInitParameters(ServletUtil.getInitialParameters());
 
-         //ServletHandler
+          //ServletHandler
+         //TODO:: lets see if we can use this as a raw.
         ServletHandler servletHandler = new ServletHandler();
         servletHandler.addServlet(jerseyServlet );
 
@@ -74,19 +77,16 @@ public class Server {
         InitialContext ic = new InitialContext();
         PGConnectionPoolDataSource dataSource = (PGConnectionPoolDataSource) ic.lookup(Constants.DATA_SOURCE_LOOK_UP_PATH);
 
-        String sql = "CREATE TABLE KA " +
+        /*String sql = "CREATE TABLE KA " +
                 "(ID INT PRIMARY KEY     NOT NULL," +
                 " NAME           TEXT    NOT NULL, " +
                 " AGE            INT     NOT NULL, " +
                 " ADDRESS        CHAR(50), " +
-                " SALARY         REAL)";
+                " SALARY         REAL)";*/
 
         Connection baseDataSource = dataSource.getConnection();
 
-        //baseDataSource.createStatement().execute(sql);
-
-
-
+          //baseDataSource.createStatement().execute(sql);
          //Start and join the server
         try {
             jettyServer.start();

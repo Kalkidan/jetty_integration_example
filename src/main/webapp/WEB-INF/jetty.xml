@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
 
-<!--Define the Server configuration here!-->
+<!--Define the com.eth.dir.Server configuration here!-->
 <Configure id="directory_server" class="org.eclipse.jetty.server.Server">
 
     <Set name="connectors">
@@ -40,14 +40,37 @@
         <Arg>jdbc/directory_data_source</Arg>
         <Arg>
             <New class="org.postgresql.ds.PGConnectionPoolDataSource">
-                <Set name="User">user</Set>
-                <Set name="Password">pass</Set>
-                <Set name="DatabaseName">dbname</Set>
+                <!--<Set name="User">kalkidan</Set>
+                <Set name="Password">pass</Set>-->
+                <Set name="DatabaseName">jetty</Set>
                 <Set name="ServerName">localhost</Set>
                 <Set name="PortNumber">5432</Set>
 
             </New>
         </Arg>
     </New>
+
+    <!--<New id="users" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/users</Arg>
+        <Arg>
+            <New class="org.apache.tomcat.jdbc.pool.DataSource">
+                <Set name="driverClassName">org.postgresql.Driver</Set>
+                &lt;!&ndash;<Set name="url">jdbc:postgresql://<server>/Archiva</Set>&ndash;&gt;
+                <Set name="name">ArchivaApp</Set>
+                <Set name="username">...</Set>
+                <Set name="password">...</Set>
+                &lt;!&ndash; depends on your concurrent users numbers &ndash;&gt;
+                <Set name="maxWait">10000</Set>
+                <Set name="removeAbandonedTimeout">10000</Set>
+                <Set name="maxActive">30</Set>
+                <Set name="initialSize">15</Set>
+                <Set name="removeAbandoned">true</Set>
+                <Set name="logAbandoned">true</Set>
+                <Set name="testOnBorrow">true</Set>
+                &lt;!&ndash; very rigourous sql query validation &ndash;&gt;
+                <Set name="validationQuery">select 1</Set>
+            </New>
+        </Arg>
+    </New>-->
 
 </Configure>
